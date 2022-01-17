@@ -1,9 +1,9 @@
 import React from "react";
 
 import MenuItem from "../menu-item/menu-item.component";
-import './directory.styles.scss';
+import "./directory.styles.scss";
 
-// Class components always need constructor
+// Class components always need constructor and holds state.
 class Directory extends React.Component {
   constructor() {
     super();
@@ -14,7 +14,7 @@ class Directory extends React.Component {
           title: "hats",
           imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
           id: 1,
-          linkUrl: "shop/hats",
+          linkUrl: "hats",
         },
         {
           title: "jackets",
@@ -48,9 +48,10 @@ class Directory extends React.Component {
 
   render() {
     return (
+      //https://stackoverflow.com/questions/31048953/what-do-these-three-dots-in-react-do
       <div className="directory-menu">
-        {this.state.sections.map(({ title, imageUrl, id }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl}/>
+        {this.state.sections.map(({ id, ...otherSectionProps }) => (
+          <MenuItem key={id} {...otherSectionProps} />
         ))}
       </div>
     );
